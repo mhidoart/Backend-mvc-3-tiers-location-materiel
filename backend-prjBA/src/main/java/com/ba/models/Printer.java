@@ -33,11 +33,7 @@ public class Printer extends Ressource{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Printer(String marque) {
-		super(marque);
 
-		// TODO Auto-generated constructor stub
-	}
 
 	public Printer(int id, int id_user, boolean color, boolean scan, String vitesse,String marque) {
 		super(id, marque);
@@ -48,9 +44,7 @@ public class Printer extends Ressource{
 		this.vitesse = vitesse;
 	}
 
-	public void setMarque(String marque) {
-		setMarque(marque);
-	}
+
 
 	public int getId_user() {
 		return id_user;

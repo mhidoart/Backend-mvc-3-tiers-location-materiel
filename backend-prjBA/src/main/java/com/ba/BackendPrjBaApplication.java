@@ -30,6 +30,8 @@ public class BackendPrjBaApplication implements CommandLineRunner {
 	PcRepository pcRepository ;
 	@Autowired 
 	PrinterRepository printerRepository;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(BackendPrjBaApplication.class, args);
 
@@ -37,9 +39,10 @@ public class BackendPrjBaApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... args) throws Exception {
-		PC pc = new PC(0,1,"intel i5","4 gb","500 gb","BGP");
+	/*	PC pc = new PC(0,1,"intel i5","4 gb","500 gb","BGP");
 		pcRepository.save(pc);
 		printerRepository.save(new Printer("pRINTER 55"));
+		*/
 
 	}
 

@@ -11,28 +11,39 @@ public class PC extends Ressource {
 	private String cpu;
 	private String ram;
 	private String stockage;
+	
 	public PC(int id, int id_user, String cpu, String ram, String stockage,String marque) {
-		super(marque);
-		setId(id);
+		super(id, marque);
 		this.id_user = id_user;
 		this.cpu = cpu;
 		this.ram = ram;
 		this.stockage = stockage;
 	}
 	public PC(int id_user, String cpu, String ram, String stockage,String marque) {
-		super(marque);
+		super(-1, marque);
 		this.id_user = id_user;
 		this.cpu = cpu;
 		this.ram = ram;
 		this.stockage = stockage;
 	}
+	
+	public PC(Integer id, String marque) {
+		super(id, marque);
+		// TODO Auto-generated constructor stub
+	}
+
 	public PC() {
 		super();
 	}
-	
-	public void setMarque(String marque){
-		setMarque(marque);
+	public PC(PC pc) {
+		super(pc.getId(),pc.getMarque());
+		this.id_user = pc.id_user;
+		this.cpu = pc.cpu;
+		this.ram = pc.ram;
+		this.stockage = pc.stockage;
 	}
+	
+	
 	public int getId_user() {
 		return id_user;
 	}
@@ -57,6 +68,7 @@ public class PC extends Ressource {
 	public void setStockage(String stockage) {
 		this.stockage = stockage;
 	}
+	
 	@Override
 	public String toString() {
 		return "PC [id=" + getId() + ", id_user=" + id_user + ", cpu=" + cpu + ", ram=" + ram + ", stockage=" + stockage

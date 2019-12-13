@@ -13,6 +13,11 @@ import com.ba.models.Ressource;
 
 @Repository
 public interface RessourceRepository extends JpaRepository<Ressource, Integer>{
+	@Query(value = "SELECT * FROM ressource c WHERE c.dtype = ?1 AND c.id = ?2", nativeQuery = true)
+	Ressource findByDtype(String type,int id);
+	
 	@Query(value = "SELECT * FROM ressource c WHERE c.dtype = ?1", nativeQuery = true)
-	List<PC> findByDtype(String type);
+	List<Ressource> findAllByDtype(String type);
+	
+	
 }
