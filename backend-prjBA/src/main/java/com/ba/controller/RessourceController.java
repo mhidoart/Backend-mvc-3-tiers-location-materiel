@@ -31,7 +31,9 @@ public class RessourceController {
 /////   le pc
 	@RequestMapping(value = "/computers/all", method = RequestMethod.GET)
 	private List<Ressource> getAllPC(){
-
+		resRepo.save(new PC(0, 1, 1, "dell", "intel i7", "4", "500"));
+		resRepo.save(new PC(1, 2, 2, "dell", "intel i3", "4", "250"));
+		resRepo.save(new PC(2, 3, 2, "dell", "intel i5", "4", "1000"));
 		return resRepo.findAllByDtype("PC");
 
 	}
@@ -79,8 +81,8 @@ public class RessourceController {
 	}
 	@RequestMapping(value = "/printers/all", method = RequestMethod.GET)
 	private List<Ressource> getAllPrinters(){
-		resRepo.save(new Printer(0, "canon"));
-
+		resRepo.save(new Printer(0, 1, 0, "canon", false, false, "300"));
+		resRepo.save(new Printer(0, 2, 0, "canon", true, true, "300"));
 		return  resRepo.findAllByDtype("Printer");
 
 	}	

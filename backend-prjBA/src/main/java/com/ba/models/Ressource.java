@@ -8,10 +8,16 @@ public class Ressource {
 
 	@Id @GeneratedValue
 	private Integer id;
+	private int id_user;
+	private int id_dep;
+
 	private String marque;
-	public Ressource(Integer id, String marque) {
+
+	public Ressource(Integer id, int id_user, int id_dep, String marque) {
 		super();
 		this.id = id;
+		this.id_user = id_user;
+		this.id_dep = id_dep;
 		this.marque = marque;
 	}
 
@@ -38,6 +44,22 @@ public class Ressource {
 
 	public void setMarque(String marque) {
 		this.marque = marque;
+	}
+
+	public int getId_user() {
+		return id_user;
+	}
+
+	public void setId_user(int id_user) {
+		this.id_user = id_user;
+	}
+
+	public int getId_dep() {
+		return id_dep;
+	}
+
+	public void setId_dep(int id_dep) {
+		this.id_dep = id_dep;
 	}
 
 }
