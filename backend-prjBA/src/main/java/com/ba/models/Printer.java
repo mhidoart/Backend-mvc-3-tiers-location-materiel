@@ -6,20 +6,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
 public class Printer extends Ressource{
-
+	
 	private boolean color;
 	private boolean scan;
 	private String vitesse;
 	
-	public Printer(Integer id, int id_user, int id_dep, String marque, boolean color, boolean scan, String vitesse) {
-		super(id, id_user, id_dep, marque);
+	
+	
+	public Printer() {
+		super();
+	}
+
+	public Printer(String marque) {
+		super(marque);
+		
+	}
+	
+	public Printer(String marque, User user) {
+		super(marque, user);
+	}
+
+	public Printer(String marque, User user, boolean color, boolean scan, String vitesse) {
+		super(marque, user);
 		this.color = color;
 		this.scan = scan;
 		this.vitesse = vitesse;
 	}
 
-	public Printer() {
-		// TODO Auto-generated constructor stub
+	public Printer(String marque, boolean color, boolean scan, String vitesse) {
+		super(marque);
+		this.color = color;
+		this.scan = scan;
+		this.vitesse = vitesse;
 	}
 
 	public boolean isColor() {
@@ -46,13 +64,12 @@ public class Printer extends Ressource{
 		this.vitesse = vitesse;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "Printer [color=" + color + ", scan=" + scan + ", vitesse=" + vitesse + "]";
 	}
+	
+	
 
 	
 	

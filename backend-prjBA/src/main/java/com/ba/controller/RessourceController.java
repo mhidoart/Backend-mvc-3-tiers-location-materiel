@@ -16,39 +16,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ba.models.PC;
 import com.ba.models.Printer;
 import com.ba.models.Ressource;
-import com.ba.repo.PcRepository;
-import com.ba.repo.PrinterRepository;
-import com.ba.repo.RessourceRepository;
-import com.mysql.cj.xdevapi.JsonArray;
+import com.ba.repositpory.RessourceRepository;
+
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("resources")
 public class RessourceController {
 	@Autowired 
-	RessourceRepository resRepo;
-
-/////   le pc
+	RessourceRepository ressourceRepository;
+	
 	@RequestMapping(value = "/computers/all", method = RequestMethod.GET)
 	private List<Ressource> getAllPC(){
-		resRepo.save(new PC(0, 1, 1, "dell", "intel i7", "4", "500"));
-		resRepo.save(new PC(1, 2, 2, "dell", "intel i3", "4", "250"));
-		resRepo.save(new PC(2, 3, 2, "dell", "intel i5", "4", "1000"));
-		return resRepo.findAllByDtype("PC");
+		
+		return ressourceRepository.findAllByDtype("PC");
 
 	}
 
 	@RequestMapping(value = "/computers/delete/{id}", method = RequestMethod.DELETE)
 	private void delete(@PathVariable Integer id) {
-		if( resRepo.findById(id) != null) {
-			resRepo.deleteById(id);
+		if( ressourceRepository.findById(id) != null) {
+			ressourceRepository.deleteById(id);
 		}
 	}
 
 	@RequestMapping(value = "/computers/add", method = RequestMethod.POST)
 	private boolean addPC(@RequestBody PC pc){
-		if( resRepo.save(pc) != null) {
-			
+		System.out.println(pc);
+		if( ressourceRepository.save(pc) != null) {
 			return true;
 		}
 		return false;
@@ -67,36 +62,33 @@ public class RessourceController {
 
 	@RequestMapping(value = "/computers/getByID/{id}", method = RequestMethod.GET)
 	private PC getComputer(@PathVariable int id){
-		return (PC) resRepo.findByDtype("PC",id);
+		return (PC) ressourceRepository.findByDtype("PC",id);
 
 	}
 	
-	
-	//////////////////////////////////////////////////////////////////////       printers 
 	@RequestMapping(value = "/printers/getByID/{id}", method = RequestMethod.GET)
 	private Printer getPrinter(@PathVariable int id){
 
-		return (Printer) resRepo.findByDtype("Printer",id);
+		return (Printer) ressourceRepository.findByDtype("Printer",id);
 
 	}
 	@RequestMapping(value = "/printers/all", method = RequestMethod.GET)
 	private List<Ressource> getAllPrinters(){
-		resRepo.save(new Printer(0, 1, 0, "canon", false, false, "300"));
-		resRepo.save(new Printer(0, 2, 0, "canon", true, true, "300"));
-		return  resRepo.findAllByDtype("Printer");
+		
+		return  ressourceRepository.findAllByDtype("Printer");
 
 	}	
 	@RequestMapping(value = "/printers/delete/{id}", method = RequestMethod.DELETE)
 	private void deletePrinter(@PathVariable Integer id) {
-		if( resRepo.findById(id) != null) {
-			resRepo.deleteById(id);
+		if( ressourceRepository.findById(id) != null) {
+			ressourceRepository.deleteById(id);
 		}
 	}
 
 	@RequestMapping(value = "/printers/add", method = RequestMethod.POST)
 	private boolean addPrinter(@RequestBody Printer printer){
 	
-			if( resRepo.save(printer) != null) {
+			if( ressourceRepository.save(printer) != null) {
 				return true;
 			}
 			return false;

@@ -2,26 +2,32 @@ package com.ba.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Panne {
-private Ressource ressource;
-private String typePanne;
-private Proprietaire proprietaire;
-private double frequence;
-private Date datePanne;
-private String description;
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	@OneToOne
+	@JoinColumn
+	private Ressource ressource;
+	private String typePanne;
+	@OneToOne
+	@JoinColumn
+	private Fournisseur fournisseur;
+	private double frequence;
+	private Date datePanne;
+	private String description;
 	public Panne() {
 		// TODO Auto-generated constructor stub
 	}
-	public Panne(Ressource ressource, String typePanne, Proprietaire proprietaire, double frequence, Date datePanne,
-			String description) {
-		super();
-		this.ressource = ressource;
-		this.typePanne = typePanne;
-		this.proprietaire = proprietaire;
-		this.frequence = frequence;
-		this.datePanne = datePanne;
-		this.description = description;
-	}
+
 	public Ressource getRessource() {
 		return ressource;
 	}
@@ -34,12 +40,7 @@ private String description;
 	public void setTypePanne(String typePanne) {
 		this.typePanne = typePanne;
 	}
-	public Proprietaire getProprietaire() {
-		return proprietaire;
-	}
-	public void setProprietaire(Proprietaire proprietaire) {
-		this.proprietaire = proprietaire;
-	}
+
 	public double getFrequence() {
 		return frequence;
 	}
@@ -58,11 +59,35 @@ private String description;
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
 	@Override
 	public String toString() {
-		return "Panne [ressource=" + ressource + ", typePanne=" + typePanne + ", proprietaire=" + proprietaire
-				+ ", frequence=" + frequence + ", datePanne=" + datePanne + ", description=" + description + "]";
+		return "Panne [id=" + id + ", ressource=" + ressource + ", typePanne=" + typePanne + ", fournisseur="
+				+ fournisseur + ", frequence=" + frequence + ", datePanne=" + datePanne + ", description=" + description
+				+ "]";
 	}
+
 	
+
+
+
+	
+
 
 }

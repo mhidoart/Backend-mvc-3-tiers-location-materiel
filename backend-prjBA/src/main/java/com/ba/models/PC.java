@@ -5,53 +5,72 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class PC extends Ressource {
+public class PC extends Ressource{
 	
-	private String cpu;
 	private String ram;
+	private String cpu;
 	private String stockage;
 	
 	
 	
-	public PC(Integer id, int id_user, int id_dep, String marque, String cpu, String ram, String stockage) {
-		super(id, id_user, id_dep, marque);
-		this.cpu = cpu;
-		this.ram = ram;
-		this.stockage = stockage;
-	}
-
-
-
 	public PC() {
 		super();
 	}
-	
-	
-	
-	public String getCpu() {
-		return cpu;
+
+	public PC(String marque) {
+		super(marque);
+		
 	}
-	public void setCpu(String cpu) {
+	
+	public PC(String marque, User user) {
+		super(marque, user);
+	}
+
+	public PC(String marque, User user, String ram, String cpu, String stockage) {
+		super(marque, user);
+		this.ram = ram;
 		this.cpu = cpu;
+		this.stockage = stockage;
 	}
+
+	public PC(String marque, String ram, String cpu, String stockage) {
+		super(marque);
+		this.ram = ram;
+		this.cpu = cpu;
+		this.stockage = stockage;
+	}
+
 	public String getRam() {
 		return ram;
 	}
+
 	public void setRam(String ram) {
 		this.ram = ram;
 	}
+
+	public String getCpu() {
+		return cpu;
+	}
+
+	public void setCpu(String cpu) {
+		this.cpu = cpu;
+	}
+
 	public String getStockage() {
 		return stockage;
 	}
+
 	public void setStockage(String stockage) {
 		this.stockage = stockage;
 	}
 
-	@Override
-	public String toString() {
-		return "PC [cpu=" + cpu + ", ram=" + ram + ", stockage=" + stockage + "]";
-	}
 	
+
+	
+
+	
+	
+
 	
 	
 }

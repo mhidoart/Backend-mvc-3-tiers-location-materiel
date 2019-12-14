@@ -3,32 +3,23 @@ package com.ba.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 @Entity
 public class Ressource {
 
 	@Id @GeneratedValue
 	private Integer id;
-	private int id_user;
-	private int id_dep;
-
 	private String marque;
-
-	public Ressource(Integer id, int id_user, int id_dep, String marque) {
-		super();
-		this.id = id;
-		this.id_user = id_user;
-		this.id_dep = id_dep;
-		this.marque = marque;
-	}
-
-	public Ressource() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Ressource(Integer id) {
-		super();
-		this.id = id;
-	}
+	
+	@ManyToOne
+	@JoinColumn
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn
+	private Fournisseur fournisseur;
 
 	public Integer getId() {
 		return id;
@@ -46,20 +37,66 @@ public class Ressource {
 		this.marque = marque;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public User getUser() {
+		return user;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getId_dep() {
-		return id_dep;
+	
+	public Fournisseur getFournisseur() {
+		return fournisseur;
 	}
 
-	public void setId_dep(int id_dep) {
-		this.id_dep = id_dep;
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
 	}
+	
+	
+
+	public Ressource(String marque, User user, Fournisseur fournisseur) {
+		super();
+		this.marque = marque;
+		this.user = user;
+		this.fournisseur = fournisseur;
+	}
+
+	
+	public Ressource(String marque, Fournisseur fournisseur) {
+		super();
+		this.marque = marque;
+		this.fournisseur = fournisseur;
+	}
+
+	public Ressource(String marque, User user) {
+		super();
+		this.marque = marque;
+		this.user = user;
+	}
+
+	
+	public Ressource(String marque) {
+		super();
+		this.marque = marque;
+	}
+
+	
+	
+	public Ressource() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Ressource [id=" + id + ", marque=" + marque + ", user=" + user + "]";
+	}
+	
+	
+	
+	
+	
+	
 
 }
