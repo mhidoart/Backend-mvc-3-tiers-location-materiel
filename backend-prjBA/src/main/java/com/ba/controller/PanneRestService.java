@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ba.models.Commande;
 import com.ba.models.Panne;
 import com.ba.repositpory.PanneRepository;
 
@@ -50,6 +51,14 @@ public class PanneRestService {
 		return repo.save(dep);
 	}
 
+	@RequestMapping(value="/getPanneByConstat/{idConstat}",method=RequestMethod.GET)
+	public Optional<Panne> getPanneByConstat(@PathVariable Integer idConstat) {
+		return repo.findPanneByConstat(idConstat);
+	}
 	
+	@RequestMapping(value="/getPanneByRessource/{idRessource}",method=RequestMethod.GET)
+	public Optional<Panne> getPanneByRessource(@PathVariable Integer idRessource) {
+		return repo.findPanneByRessource(idRessource);
+	}
 
 }

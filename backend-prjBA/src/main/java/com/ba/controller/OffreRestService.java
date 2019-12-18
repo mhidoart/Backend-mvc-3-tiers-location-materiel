@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ba.models.Besoin;
 import com.ba.models.Offre;
 import com.ba.repositpory.OffreRepository;
 
@@ -28,6 +29,15 @@ public class OffreRestService {
 	public List<Offre> getAllOffres(){
 		return repo.findAll();
 	}
+	@RequestMapping(value="/getAllOffresByDemadeOffre/{idDemamdeOffre}",method=RequestMethod.GET)
+	public List<Offre> getAllOffresByDemadeOffre(@PathVariable int idDemamdeOffre ){
+		return repo.findOffreByDemandeOffre(idDemamdeOffre);
+	}
+	@RequestMapping(value="/getAllOffresByFournisseur/{idFournisseur}",method=RequestMethod.GET)
+	public List<Offre> getAllOffresByFournisseur(@PathVariable int idFournisseur ){
+		return repo.findOffreByFournisseur(idFournisseur);
+	}
+	
 	@RequestMapping(value="/getOffreById/{id}",method=RequestMethod.GET)
 	public Optional<Offre> getOffreById(@PathVariable Integer id){
 		return repo.findById(id);
@@ -47,6 +57,12 @@ public class OffreRestService {
 	@RequestMapping(value="/updateOffre/{id}",method=RequestMethod.PUT)
 	public Offre updateOffre(@PathVariable Integer id, @RequestBody Offre dep) {
 		dep.setId(id);
+		return repo.save(dep);
+	}
+	@RequestMapping(value="/valide/{id}/{flag}",method=RequestMethod.PUT)
+	public Offre valide(@PathVariable Integer id,@PathVariable boolean flag, @RequestBody Offre dep) {
+		dep.setId(id);
+		dep.setFlag(flag);
 		return repo.save(dep);
 	}
 

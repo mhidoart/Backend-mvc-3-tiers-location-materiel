@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ba.models.Besoin;
 import com.ba.models.DemandeOffre;
 import com.ba.repositpory.ConstatRepository;
 import com.ba.repositpory.DemandeOffreRepository;
@@ -27,6 +28,7 @@ public class DemandeOffreRestService {
 	public List<DemandeOffre> getAllDemandeOffre(){
 		return repo.findAll();
 	}
+	
 	@RequestMapping(value="/getDemandeOffreById/{id}",method=RequestMethod.GET)
 	public Optional<DemandeOffre> getDemandeOffreById(@PathVariable Integer id){
 		return repo.findById(id);
@@ -46,6 +48,12 @@ public class DemandeOffreRestService {
 	@RequestMapping(value="/updateDemandeOffre/{id}",method=RequestMethod.PUT)
 	public DemandeOffre updateConstat(@PathVariable Integer id, @RequestBody DemandeOffre dep) {
 		dep.setId(id);
+		return repo.save(dep);
+	}
+	@RequestMapping(value="/valide/{id}/{flag}",method=RequestMethod.PUT)
+	public DemandeOffre valide(@PathVariable Integer id,@PathVariable boolean flag, @RequestBody DemandeOffre dep) {
+		dep.setId(id);
+		dep.setFlag(flag);
 		return repo.save(dep);
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ba.models.Besoin;
+import com.ba.models.DemandeOffre;
 import com.ba.models.Ressource;
 @Repository
 public interface BesoinRepository extends JpaRepository<Besoin, Integer>{
@@ -15,4 +16,7 @@ public interface BesoinRepository extends JpaRepository<Besoin, Integer>{
 	
 	@Query(value = "SELECT * FROM besoin c WHERE c.dtype = ?1", nativeQuery = true)
 	List<Besoin> findAllByDtype(String type);
+	
+	@Query(value = "SELECT * FROM besoin c WHERE  c.dtype = ?1 AND c.demande_offre = ?2", nativeQuery = true)
+	List<Besoin> findBesoinByOffre(String dtype,int idDemandeOffre);
 }

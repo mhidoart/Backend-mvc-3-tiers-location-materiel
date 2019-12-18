@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ba.models.Commande;
+import com.ba.models.Offre;
 import com.ba.repositpory.CommandeRepository;
 
 @RestController
@@ -45,6 +46,18 @@ public class CommandeRestService {
 	public Commande updateCommande(@PathVariable Integer id, @RequestBody Commande dep) {
 		dep.setId(id);
 		return repo.save(dep);
+	}
+	
+	@RequestMapping(value="/valide/{id}/{delivery}",method=RequestMethod.PUT)
+	public Commande valide(@PathVariable Integer id,@PathVariable boolean delivery, @RequestBody Commande dep) {
+		dep.setId(id);
+		dep.setDelivery(delivery);
+		return repo.save(dep);
+	}
+
+	@RequestMapping(value="/getCommandeByOffre/{idOffre}",method=RequestMethod.GET)
+	public Optional<Commande> getCommandeByOffre(@PathVariable Integer idOffre) {
+		return repo.findCommandeByOffre(idOffre);
 	}
 
 }

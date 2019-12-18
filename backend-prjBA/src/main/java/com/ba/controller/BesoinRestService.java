@@ -25,6 +25,14 @@ public class BesoinRestService {
 	@Autowired
 	BesoinRepository repo;
 	
+	@RequestMapping(value="/getBesoinPCByOffre/{id}",method=RequestMethod.GET) //les besoinPC qui appartien a une demandeOffre
+	public List<Besoin> getBesoinPCByOffre(@PathVariable Integer idDemandeOffre){
+		return repo.findBesoinByOffre("BesoinPC", idDemandeOffre);
+	}
+	@RequestMapping(value="/getBesoinPrinterByOffre/{id}",method=RequestMethod.GET) //les besoinPrinter qui appartien a une demandeOffre
+	public List<Besoin> getBesoinPrinterByOffre(@PathVariable Integer idDemandeOffre){
+		return repo.findBesoinByOffre("BesoinPrinter", idDemandeOffre);
+	}
 	@RequestMapping(value="/getBesoinPCByID/{id}",method=RequestMethod.GET)
 	public BesoinPC getBesoinByPC(@PathVariable Integer id){
 		return (BesoinPC) repo.findByDtype("BesoinPC", id);
