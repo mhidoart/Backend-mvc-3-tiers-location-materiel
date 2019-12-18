@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ba.models.Role;
 import com.ba.models.User;
+import com.ba.repositpory.DepartementRepository;
 import com.ba.repositpory.RoleRepository;
 
 
@@ -31,6 +32,8 @@ public class UserRestService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
+	private DepartementRepository departementRepository;
 	
 	@RequestMapping(value="/getUserById/{id}",method=RequestMethod.GET)
 	public Optional<User> getUserById(@PathVariable Integer id){
@@ -58,6 +61,7 @@ public class UserRestService {
 		List<Role> r = roleRepository.findByName("ROLE_USER");
 		System.out.println("role " + r);
 		user.setRoles(r);
+		departementRepository.save(user.getDepartement());
 		userRepository.save(user);
 		return true;
 	}

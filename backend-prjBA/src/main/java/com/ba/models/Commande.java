@@ -1,73 +1,74 @@
 package com.ba.models;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
-public class Commande {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private String category; // pc ou imprimant 
-	private int id_offre; ///offre du fournisseur 
+public class Commande implements Serializable {
+	
+	@Id @GeneratedValue
+	private Integer id;
+	
+	@Temporal(TemporalType.DATE)
+	private Date date;
+		
+	private Boolean delivery;
+	
+	@OneToOne
+	private Offre offre;
 
-	private boolean valide; //si true alors on a recu le produit
-
-	public Commande() {
-		// TODO Auto-generated constructor stub
+	public Date getDate() {
+		return date;
 	}
 
-	public Commande(int id, String category, int id_offre, boolean valide) {
-		super();
-		this.id = id;
-		this.category = category;
-		this.id_offre = id_offre;
-		this.valide = valide;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public Commande(String category, int id_offre, boolean valide) {
-		super();
-		this.category = category;
-		this.id_offre = id_offre;
-		this.valide = valide;
+	public Boolean getDelivery() {
+		return delivery;
 	}
 
-	public int getId() {
+	public void setDelivery(Boolean delivery) {
+		this.delivery = delivery;
+	}
+
+	public Offre getOffre() {
+		return offre;
+	}
+
+	public void setOffre(Offre offre) {
+		this.offre = offre;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getCategory() {
-		return category;
+	public Commande() {
+		super();
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public Commande(Date date, Boolean delivery, Offre offre) {
+		super();
+		this.date = date;
+		this.delivery = delivery;
+		this.offre = offre;
 	}
-
-	public int getId_offre() {
-		return id_offre;
-	}
-
-	public void setId_offre(int id_offre) {
-		this.id_offre = id_offre;
-	}
-
-	public boolean isValide() {
-		return valide;
-	}
-
-	public void setValide(boolean valide) {
-		this.valide = valide;
-	}
-
-	@Override
-	public String toString() {
-		return "Commande [id=" + id + ", category=" + category + ", id_offre=" + id_offre + ", valide=" + valide + "]";
-	}
-
+	
+	
+	
+	
+	
 }

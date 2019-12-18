@@ -1,63 +1,43 @@
 package com.ba.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Panne {
-	@Id
-	@GeneratedValue
-	private Integer id;
+public class Panne implements Serializable {
 	
-	@OneToOne
+	@Id @GeneratedValue
+	private Integer id;
+	@Temporal(TemporalType.DATE)
+	private Date datePanne;
+	private String typePanne;
+	private String frequence;
+	private String description;
+	
+	@ManyToOne
 	@JoinColumn
 	private Ressource ressource;
-	private String typePanne;
+	
 	@OneToOne
-	@JoinColumn
-	private Fournisseur fournisseur;
-	private double frequence;
-	private Date datePanne;
-	private String description;
-	public Panne() {
-		// TODO Auto-generated constructor stub
+	private Constat constat;
+
+	
+
+	public Constat getConstat() {
+		return constat;
 	}
 
-	public Ressource getRessource() {
-		return ressource;
-	}
-	public void setRessource(Ressource ressource) {
-		this.ressource = ressource;
-	}
-	public String getTypePanne() {
-		return typePanne;
-	}
-	public void setTypePanne(String typePanne) {
-		this.typePanne = typePanne;
-	}
-
-	public double getFrequence() {
-		return frequence;
-	}
-	public void setFrequence(double frequence) {
-		this.frequence = frequence;
-	}
-	public Date getDatePanne() {
-		return datePanne;
-	}
-	public void setDatePanne(Date datePanne) {
-		this.datePanne = datePanne;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setConstat(Constat constat) {
+		this.constat = constat;
 	}
 
 	public Integer getId() {
@@ -68,26 +48,70 @@ public class Panne {
 		this.id = id;
 	}
 
-	public Fournisseur getFournisseur() {
-		return fournisseur;
+	public Date getDatePanne() {
+		return datePanne;
 	}
 
-	public void setFournisseur(Fournisseur fournisseur) {
-		this.fournisseur = fournisseur;
+	public void setDatePanne(Date datePanne) {
+		this.datePanne = datePanne;
 	}
 
-	@Override
-	public String toString() {
-		return "Panne [id=" + id + ", ressource=" + ressource + ", typePanne=" + typePanne + ", fournisseur="
-				+ fournisseur + ", frequence=" + frequence + ", datePanne=" + datePanne + ", description=" + description
-				+ "]";
+	public String getTypePanne() {
+		return typePanne;
+	}
+
+	public void setTypePanne(String typePanne) {
+		this.typePanne = typePanne;
+	}
+
+	public String getFrequence() {
+		return frequence;
+	}
+
+	public void setFrequence(String frequence) {
+		this.frequence = frequence;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Ressource getRessource() {
+		return ressource;
+	}
+
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
+
+	public Panne() {
+		super();
+	}
+
+	public Panne(Date datePanne, String typePanne, String frequence, String description, Ressource ressource) {
+		super();
+		this.datePanne = datePanne;
+		this.typePanne = typePanne;
+		this.frequence = frequence;
+		this.description = description;
+		this.ressource = ressource;
+	}
+
+	public Panne(Date datePanne, String typePanne, String frequence, String description, Ressource ressource,
+			Constat constat) {
+		super();
+		this.datePanne = datePanne;
+		this.typePanne = typePanne;
+		this.frequence = frequence;
+		this.description = description;
+		this.ressource = ressource;
+		this.constat = constat;
 	}
 
 	
-
-
-
-	
-
 
 }

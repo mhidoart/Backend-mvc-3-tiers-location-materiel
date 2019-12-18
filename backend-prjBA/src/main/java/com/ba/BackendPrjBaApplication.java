@@ -1,6 +1,7 @@
 package com.ba;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.ba.models.BesoinPC;
+import com.ba.models.BesoinPrinter;
 import com.ba.models.PC;
 import com.ba.models.Printer;
 import com.ba.models.Role;
+import com.ba.models.User;
+import com.ba.repositpory.BesoinRepository;
 import com.ba.repositpory.RessourceRepository;
 import com.ba.repositpory.RoleRepository;
 import com.ba.repositpory.UserRepository;
@@ -24,6 +29,8 @@ import com.ba.repositpory.UserRepository;
 
 @SpringBootApplication( )
 public class BackendPrjBaApplication implements CommandLineRunner {
+	@Autowired
+	BesoinRepository repo;
 
 	@Autowired
 	UserRepository userRepository;
@@ -50,7 +57,8 @@ public class BackendPrjBaApplication implements CommandLineRunner {
 			Role r3 = new Role((long) 3, "ROLE_FOURNISSEUR");
 			roleRepository.save(r1); roleRepository.save(r2);	roleRepository.save(r3);	
 		}
-		
+		repo.save(new BesoinPC(new Date(), true));
+		//repo.save(new BesoinPrinter(new User()));
 		//ressourceRepository.save(new PC("DELL", "8G", "i5", "HDD"));
 	}
 

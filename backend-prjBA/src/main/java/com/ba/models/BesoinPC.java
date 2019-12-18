@@ -1,5 +1,6 @@
 package com.ba.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,62 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class BesoinPC {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private int id_user;
-	private Date date;
-	private String cpu;
-	private String ram;
-	private String stockage;
-	private boolean valide;
+public class BesoinPC extends Besoin implements Serializable {
 	public BesoinPC() {
 		// TODO Auto-generated constructor stub
 	}
-	public BesoinPC(int id_user, Date date, String cpu, String ram, String stockage, boolean valide) {
-		super();
-		this.id_user = id_user;
-		this.date = date;
-		this.cpu = cpu;
-		this.ram = ram;
-		this.stockage = stockage;
-		this.valide = valide;
+	public BesoinPC(Date date, Boolean flag) {
+		super(date, flag);
+		// TODO Auto-generated constructor stub
 	}
-	public BesoinPC(int id, int id_user, Date date, String cpu, String ram, String stockage, boolean valide) {
-		super();
-		this.id = id;
-		this.id_user = id_user;
-		this.date = date;
-		this.cpu = cpu;
-		this.ram = ram;
-		this.stockage = stockage;
-		this.valide = valide;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public boolean isValide() {
-		return valide;
-	}
-	public void setValide(boolean valide) {
-		this.valide = valide;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getId_user() {
-		return id_user;
-	}
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
-	}
+	private String cpu;
+	private String ram;
+	private String stockage;
+	
+	
+	
 	public String getCpu() {
 		return cpu;
 	}
@@ -81,11 +40,32 @@ public class BesoinPC {
 	public void setStockage(String stockage) {
 		this.stockage = stockage;
 	}
+	
+	
+	public BesoinPC(Date date, Boolean flag, User user, String cpu, String ram, String stockage) {
+		super(date, flag, user);
+		this.cpu = cpu;
+		this.ram = ram;
+		this.stockage = stockage;
+	}
+	public BesoinPC(Date date, Boolean flag, User user) {
+		super(date, flag, user);
+		// TODO Auto-generated constructor stub
+	}
+	public BesoinPC(User user) {
+		super(user);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public BesoinPC(Date date, Boolean flag, User userBesoin, DemandeOffre demandeOffre) {
+		super(date, flag, userBesoin, demandeOffre);
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
-		return "BesoinPC [id=" + id + ", id_user=" + id_user + ", cpu=" + cpu + ", ram=" + ram + ", stockage="
-				+ stockage + "]";
+		return "BesoinPC [cpu=" + cpu + ", ram=" + ram + ", stockage=" + stockage + "]";
 	}
+	
 
 
 }

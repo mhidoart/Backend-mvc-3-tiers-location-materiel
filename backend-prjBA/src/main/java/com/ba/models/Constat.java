@@ -1,56 +1,82 @@
 package com.ba.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Constat {
-private Panne panne;
-private Date date_constat;
-private String description;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-	public Constat() {
-		// TODO Auto-generated constructor stub
+@Entity
+public class Constat implements Serializable{
+
+	@Id @GeneratedValue
+	private Integer id;
+	@Temporal(TemporalType.DATE)
+	private Date date;
+	private String description;
+
+	@OneToOne(mappedBy="constat",fetch=FetchType.LAZY)
+	private Panne panne;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public Constat(Panne panne, Date date_constat, String description) {
-		super();
-		this.panne = panne;
-		this.date_constat = date_constat;
-		this.description = description;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Constat(Date date_constat, String description) {
-		super();
-		this.date_constat = date_constat;
-		this.description = description;
+
+	public Date getDate() {
+		return date;
 	}
 
-	public Panne getPanne() {
-		return panne;
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public void setPanne(Panne panne) {
-		this.panne = panne;
-	}
-
-	public Date getDate_constat() {
-		return date_constat;
-	}
-
-	public void setDate_constat(Date date_constat) {
-		this.date_constat = date_constat;
-	}
 
 	public String getDescription() {
 		return description;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "Constat [panne=" + panne + ", date_constat=" + date_constat + ", description=" + description + "]";
+
+
+	public Panne getPanne() {
+		return panne;
 	}
+
+
+	public void setPanne(Panne panne) {
+		this.panne = panne;
+	}
+
+
+	public Constat() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Constat(Date date, String description, Panne panne) {
+		super();
+		this.date = date;
+		this.description = description;
+		this.panne = panne;
+	}
+	
+	
+
 
 }

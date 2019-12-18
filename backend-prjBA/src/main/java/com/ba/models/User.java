@@ -31,6 +31,8 @@ public class User implements Serializable {
 	private String email;
 	private String pasword;
 	private String username;
+	
+	
 	@Column(columnDefinition = "boolean default true")
 	private boolean enabled;
 	
@@ -42,7 +44,9 @@ public class User implements Serializable {
 	@JoinColumn
 	private Departement departement;
 	
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="userBesoin",fetch=FetchType.LAZY)
+	private List<Besoin>besoins;
 	
 	public User(Integer id, String nom, String prenom, String email, String pasword, String username, boolean enabled, List<Role> roles) {
 		super();
@@ -133,6 +137,12 @@ public class User implements Serializable {
 	
 	
 
+	public List<Besoin> getBesoins() {
+		return besoins;
+	}
+	public void setBesoins(List<Besoin> besoins) {
+		this.besoins = besoins;
+	}
 	public Departement getDepartement() {
 		return departement;
 	}
@@ -213,6 +223,22 @@ public class User implements Serializable {
 		this.enabled = enabled;
 		this.ressources = ressources;
 		this.departement = departement;
+	}
+	
+	
+	public User(String nom, String prenom, String email, String pasword, String username, boolean enabled,
+			List<Ressource> ressources, Departement departement, List<Besoin> besoins, List<Role> roles) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pasword = pasword;
+		this.username = username;
+		this.enabled = enabled;
+		this.ressources = ressources;
+		this.departement = departement;
+		this.besoins = besoins;
+		this.roles = roles;
 	}
 	@Override
 	public String toString() {

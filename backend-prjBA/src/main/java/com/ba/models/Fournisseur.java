@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +16,9 @@ public class Fournisseur extends User  {
 	
 	private String company;
 	private String tel;
+	
+	@OneToMany(mappedBy="fournisseur",fetch=FetchType.LAZY)
+	private List<Offre> offres;
 	
 	public String getCompany() {
 		return company;
@@ -31,6 +34,25 @@ public class Fournisseur extends User  {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	
+	public List<Offre> getOffres() {
+		return offres;
+	}
+
+	public void setOffres(List<Offre> offres) {
+		this.offres = offres;
+	}
+	
+	
+	
+	public Fournisseur(Integer id, String nom, String prenom, String email, String pasword, String username,
+			boolean enabled, List<Role> roles, String company, String tel, List<Offre> offres) {
+		super(id, nom, prenom, email, pasword, username, enabled, roles);
+		this.company = company;
+		this.tel = tel;
+		this.offres = offres;
 	}
 
 	public Fournisseur() {
