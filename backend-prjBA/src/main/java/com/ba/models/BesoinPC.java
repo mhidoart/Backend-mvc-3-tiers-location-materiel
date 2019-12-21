@@ -19,9 +19,16 @@ public class BesoinPC extends Besoin implements Serializable {
 	private String cpu;
 	private String ram;
 	private String stockage;
+	private String hardDiskTech;
 	
 	
 	
+	public String getHardDiskTech() {
+		return hardDiskTech;
+	}
+	public void setHardDiskTech(String hardDiskTech) {
+		this.hardDiskTech = hardDiskTech;
+	}
 	public String getCpu() {
 		return cpu;
 	}
@@ -64,6 +71,13 @@ public class BesoinPC extends Besoin implements Serializable {
 	@Override
 	public String toString() {
 		return "BesoinPC [cpu=" + cpu + ", ram=" + ram + ", stockage=" + stockage + "]";
+	}
+	public BesoinPC(Date date, Boolean flag, User user, String cpu, String ram, String stockage, String hardDiskTech) {
+		super(date, flag, user);
+		this.cpu = cpu;
+		this.ram = ram;
+		this.stockage = stockage;
+		this.hardDiskTech = hardDiskTech;
 	}
 	
 

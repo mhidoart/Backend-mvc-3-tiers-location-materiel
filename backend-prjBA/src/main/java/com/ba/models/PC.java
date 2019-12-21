@@ -10,6 +10,7 @@ public class PC extends Ressource{
 	private String ram;
 	private String cpu;
 	private String stockage;
+	private String hardDiskTech;
 	
 	
 	
@@ -64,13 +65,15 @@ public class PC extends Ressource{
 		this.stockage = stockage;
 	}
 
-	
+	public String getHardDiskTech() {
+		return hardDiskTech;
+	}
+
+	public void setHardDiskTech(String hardDiskTech) {
+		this.hardDiskTech = hardDiskTech;
+	}
 
 	
 
-	
-	
-
-	
 	
 }

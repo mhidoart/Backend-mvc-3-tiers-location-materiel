@@ -7,10 +7,9 @@ import javax.persistence.Id;
 @Entity
 public class Printer extends Ressource{
 	
-	private boolean color;
-	private boolean scan;
-	private String vitesse;
 	
+	private String vitesse;
+	private String resolution;
 	
 	
 	public Printer() {
@@ -26,48 +25,34 @@ public class Printer extends Ressource{
 		super(marque, user);
 	}
 
-	public Printer(String marque, User user, boolean color, boolean scan, String vitesse) {
-		super(marque, user);
-		this.color = color;
-		this.scan = scan;
-		this.vitesse = vitesse;
-	}
-
-	public Printer(String marque, boolean color, boolean scan, String vitesse) {
-		super(marque);
-		this.color = color;
-		this.scan = scan;
-		this.vitesse = vitesse;
-	}
-
-	public boolean isColor() {
-		return color;
-	}
-
-	public void setColor(boolean color) {
-		this.color = color;
-	}
-
-	public boolean isScan() {
-		return scan;
-	}
-
-	public void setScan(boolean scan) {
-		this.scan = scan;
-	}
-
 	public String getVitesse() {
 		return vitesse;
 	}
-
+	
+	public Printer(String marque, User user, Fournisseur fournisseur, String vitesse, String resolution) {
+		super(marque, user, fournisseur);
+		this.vitesse = vitesse;
+		this.resolution = resolution;
+	}
+	
 	public void setVitesse(String vitesse) {
 		this.vitesse = vitesse;
 	}
 
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+
 	@Override
 	public String toString() {
-		return "Printer [color=" + color + ", scan=" + scan + ", vitesse=" + vitesse + "]";
+		return "Printer [vitesse=" + vitesse + ", resolution=" + resolution + "]";
 	}
+	
+	
 	
 	
 

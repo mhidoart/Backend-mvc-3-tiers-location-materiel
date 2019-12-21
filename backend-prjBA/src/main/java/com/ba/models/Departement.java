@@ -61,6 +61,10 @@ public class Departement  {
 	public String toString() {
 		return "Departement [id=" + id + ", nom=" + nom + ", users=" + users + "]";
 	}
+
+	public Departement() {
+		super();
+	}
 	
 	
 	

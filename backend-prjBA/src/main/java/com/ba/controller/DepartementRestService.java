@@ -18,6 +18,7 @@ import com.ba.repositpory.DepartementRepository;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("departement")
 public class DepartementRestService {
 	@Autowired
 	DepartementRepository depRepo;

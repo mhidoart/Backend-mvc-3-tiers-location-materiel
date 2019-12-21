@@ -21,7 +21,6 @@ public class Besoin  implements Serializable{
 	private Date date;
 	private Boolean flag;
 	
-	
 	@ManyToOne
 	@JoinColumn
 	private User userBesoin;

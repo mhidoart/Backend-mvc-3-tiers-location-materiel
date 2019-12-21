@@ -58,20 +58,36 @@ public class BesoinRestService {
 		return repo.findById(id);
 	}
 	
-	@RequestMapping(value="/addBesoin",method=RequestMethod.POST)
-	public boolean addBesoin(@RequestBody Besoin dep) {
-		if(repo.save(dep) != null) {
+	
+	@RequestMapping(value="/addBesoinPC",method=RequestMethod.POST)
+	public boolean addBesoinPC(@RequestBody BesoinPC besoinPC) {
+		if(repo.save(besoinPC) != null) {
 			return true;
 		}
 		return false;
 	}
-	@RequestMapping(value="/deleteBesoin/{id}",method=RequestMethod.DELETE)
-	public boolean deleteBesoin(@PathVariable Integer id) {
+	
+	@RequestMapping(value="/addBesoinPrinter",method=RequestMethod.POST)
+	public boolean addBesoinPrinter(@RequestBody BesoinPrinter besoinPrinter) {
+		if(repo.save(besoinPrinter) != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	@RequestMapping(value="/deleteBesoinPc/{id}",method=RequestMethod.DELETE)
+	public boolean deleteBesoinPc(@PathVariable Integer id) {
+		repo.deleteById(id);
+		return true;
+	}
+	@RequestMapping(value="/deleteBesoinPrinter/{id}",method=RequestMethod.DELETE)
+	public boolean deleteBesoinPrinter(@PathVariable Integer id) {
 		repo.deleteById(id);
 		return true;
 	}
 	@RequestMapping(value="/updateBesoin/{id}",method=RequestMethod.PUT)
-	public Besoin updateBesoin(@PathVariable Integer id, @RequestBody Besoin dep) {
+	public Besoin updateBesoinPc(@PathVariable Integer id, @RequestBody Besoin dep) {
 		dep.setId(id);
 		return repo.save(dep);
 	}
